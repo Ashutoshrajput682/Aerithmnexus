@@ -40,7 +40,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-2 shrink-0">
             <Code2 className="text-blue-400 w-7 h-7 sm:w-8 sm:h-8 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
             <span className="font-extrabold text-base sm:text-xl tracking-tight text-white">
-              Aerithmnexus
+               Aerithmnexus
             </span>
           </Link>
 
