@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <Code2 className="text-blue-500 w-7 h-7 sm:w-8 sm:h-8" />
               <span className="font-extrabold text-lg sm:text-xl text-white">
-                WebDev<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400"> Agency</span>
+              Aerithmnexus
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs mb-5">
