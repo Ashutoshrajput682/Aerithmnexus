@@ -115,7 +115,7 @@ export default function ContactPage() {
                 <div className="p-3 bg-blue-500/10 rounded-xl text-blue-400"><Mail className="w-6 h-6"/></div>
                 <div>
                   <p className="font-semibold text-gray-400">Email</p>
-                  <p className="text-lg">hello@webdevagency.com</p>
+                  <p className="text-lg">aerithmnexus@gmail.com</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">

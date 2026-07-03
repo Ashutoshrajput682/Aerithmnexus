@@ -35,7 +35,7 @@ export default function Contact() {
               <div className="p-4 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400"><Mail className="w-6 h-6" /></div>
               <div>
                 <p className="text-sm text-gray-400 font-semibold uppercase tracking-wider">Email Us</p>
-                <p className="text-xl font-medium">haerithmnexus@gmail.com</p>
+                <p className="text-xl font-medium">Aerithmnexus@gmail.com</p>
               </div>
             </div>
             <div className="flex items-center gap-6 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
