@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-primary: #3b82f6;
+  --color-secondary: #8b5cf6;
+  --color-dark: #0f172a;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-dark);
+  color: #f8fafc;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: #0f172a; }
+::-webkit-scrollbar-thumb  { background: #334155; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ── Mobile tap highlight ────────────────────────────────── */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* ── Images ──────────────────────────────────────────────── */
+img { max-width: 100%; height: auto; }
+
+/* ── xs breakpoint helper (used by some components) ─────── */
+@media (min-width: 475px) {
+  .xs\:flex-row  { flex-direction: row; }
+  .xs\:px-0      { padding-left: 0; padding-right: 0; }
+}
