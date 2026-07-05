@@ -18,7 +18,7 @@ export default function About() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
   return (
-    <div id="about" className="relative w-full bg-[#050505] text-white overflow-hidden py-24 z-10">
+    <div id="about" className="relative w-full  text-white overflow-hidden py-24 z-10">
       
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">

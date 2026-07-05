@@ -34,6 +34,37 @@ const services = [
       'WordPress & Headless CMS'
     ]
   },
+   {
+    icon: ShoppingCart,
+    title: 'Ecommerce Development',
+    description: 'Robust and scalable ecommerce solutions designed to maximize conversions and streamline your sales.',
+    gradient: 'from-emerald-500/20 to-teal-500/20',
+    iconColor: 'text-emerald-400',
+    iconBg: 'bg-emerald-500/10 border-emerald-500/20',
+    items: [
+      'Shopify Development',
+      'WooCommerce Development',
+      'Magento Development',
+      'Custom Ecommerce Development'
+    ]
+  },
+  
+   {
+    icon: Search,
+    title: 'SEO Services',
+    description: 'Boost your visibility and drive organic traffic with our comprehensive data-driven SEO strategies.',
+    gradient: 'from-amber-500/20 to-orange-500/20',
+    iconColor: 'text-amber-400',
+    iconBg: 'bg-amber-500/10 border-amber-500/20',
+    items: [
+      'Technical SEO & SEO Audit',
+      'Ecommerce & Local SEO',
+      'Enterprise SEO',
+      'White Label SEO',
+      'On Page & Off Page SEO'
+    ]
+  },
+
   {
     icon: Smartphone,
     title: 'Mobile App Development',
@@ -63,35 +94,8 @@ const services = [
       'Figma to React'
     ]
   },
-  {
-    icon: ShoppingCart,
-    title: 'Ecommerce Development',
-    description: 'Robust and scalable ecommerce solutions designed to maximize conversions and streamline your sales.',
-    gradient: 'from-emerald-500/20 to-teal-500/20',
-    iconColor: 'text-emerald-400',
-    iconBg: 'bg-emerald-500/10 border-emerald-500/20',
-    items: [
-      'Shopify Development',
-      'WooCommerce Development',
-      'Magento Development',
-      'Custom Ecommerce Development'
-    ]
-  },
-  {
-    icon: Search,
-    title: 'SEO Services',
-    description: 'Boost your visibility and drive organic traffic with our comprehensive data-driven SEO strategies.',
-    gradient: 'from-amber-500/20 to-orange-500/20',
-    iconColor: 'text-amber-400',
-    iconBg: 'bg-amber-500/10 border-amber-500/20',
-    items: [
-      'Technical SEO & SEO Audit',
-      'Ecommerce & Local SEO',
-      'Enterprise SEO',
-      'White Label SEO',
-      'On Page & Off Page SEO'
-    ]
-  },
+ 
+ 
   {
     icon: TrendingUp,
     title: 'Digital Marketing',
