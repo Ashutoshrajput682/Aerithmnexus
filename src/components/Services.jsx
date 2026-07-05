@@ -48,7 +48,7 @@ const services = [
       'Custom Ecommerce Development'
     ]
   },
-  
+
    {
     icon: Search,
     title: 'SEO Services',
@@ -186,7 +186,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 relative z-10 font-sans text-slate-50">
+    <section id="services" className=" relative z-10 font-sans text-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h2
@@ -224,35 +224,35 @@ const Services = () => {
                 {/* Glow Background on Hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
 
-                <div className="relative z-10 p-8 flex flex-col flex-grow">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border ${service.iconBg}`}>
-                    <Icon className={`w-7 h-7 ${service.iconColor}`} />
+                <div className="relative z-10 p-6 flex flex-col flex-grow">
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 border ${service.iconBg}`}>
+                    <Icon className={`w-6 h-6 ${service.iconColor}`} />
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-violet-400 transition-all duration-300">
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-violet-400 transition-all duration-300">
                     {service.title}
                   </h3>
                   
-                  <p className="text-slate-400 leading-relaxed mb-6 h-[3rem] line-clamp-2">
+                  <p className="text-slate-400 leading-relaxed mb-3 h-[2rem] line-clamp-2">
                     {service.description}
                   </p>
 
-                  <ul className="space-y-3 mb-8 flex-grow">
+                  <ul className="space-y-3 mb-4 flex-grow">
                     {service.items.map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
-                        <CheckCircle2 className={`w-5 h-5 shrink-0 ${service.iconColor}`} />
+                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${service.iconColor}`} />
                         <span className="leading-tight">{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="pt-6 mt-auto border-t border-white/10">
+                  <div className="pt-4 mt-auto border-t border-white/10">
                     <Link
                       to="/Services"
                       className={`inline-flex items-center gap-2 text-sm font-semibold ${service.iconColor} hover:text-white transition-colors group/link`}
                     >
                       Learn More
-                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
