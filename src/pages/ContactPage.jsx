@@ -272,7 +272,7 @@ export default function ContactPage() {
         </section>
 
         {/* 13. FAQ */}
-        <section className="space-y-12 max-w-4xl mx-auto w-full">
+        {/* <section className="space-y-12 max-w-4xl mx-auto w-full">
           <div className="text-center">
             <h2 className="text-3xl md:text-5xl font-bold">Frequently Asked Questions</h2>
           </div>
@@ -296,7 +296,7 @@ export default function ContactPage() {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* 14. GOOGLE MAP */}
         <section className="relative h-[400px] rounded-3xl overflow-hidden border border-white/10 group">
