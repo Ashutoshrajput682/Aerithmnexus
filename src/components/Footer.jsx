@@ -15,10 +15,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <Code2 className="text-blue-500 w-7 h-7 sm:w-8 sm:h-8" />
-              <span className="font-extrabold text-lg sm:text-xl text-white">
-               Aerithmnexus   
-              </span>
+              <img src="/img/logo.svg" alt="Aerithmnexus Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs mb-5">
               Creating digital experiences that inspire and convert. We combine modern design with
