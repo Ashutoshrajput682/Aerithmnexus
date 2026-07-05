@@ -184,7 +184,9 @@ const services = [
   }
 ];
 
-const Services = () => {
+const Services = ({ limit }) => {
+  const displayedServices = limit ? services.slice(0, limit) : services;
+
   return (
     <section id="services" className=" relative z-10 font-sans text-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -206,7 +208,7 @@ const Services = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
+          {displayedServices.map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.div
@@ -260,6 +262,18 @@ const Services = () => {
             );
           })}
         </div>
+
+        {limit && (
+          <div className="mt-16 text-center">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-violet-600 rounded-full text-white font-semibold hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-300 hover:scale-105"
+            >
+              Read More
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

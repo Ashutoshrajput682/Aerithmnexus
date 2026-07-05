@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
@@ -10,6 +11,7 @@ import ContactPage from './pages/ContactPage';
 function App() {
   return (
     <div className="relative w-full overflow-hidden bg-slate-900 text-slate-50 font-sans">
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Services" element={<ServicesPage />} />
