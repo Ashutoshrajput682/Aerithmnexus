@@ -337,7 +337,7 @@ export default function AboutPage() {
         </section>
 
         {/* EXPERTISE */}
-        <section className="space-y-12">
+        {/* <section className="space-y-12">
           <div className="text-center">
             <h3 className="text-3xl md:text-5xl font-bold mb-4">Our Expertise</h3>
             <p className="text-gray-400 max-w-2xl mx-auto">Mastering the modern tech stack to build robust, scalable, and future-proof applications.</p>
@@ -352,7 +352,7 @@ export default function AboutPage() {
               </motion.span>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* DEVELOPMENT PROCESS */}
         <section className="space-y-16">
@@ -480,9 +480,11 @@ export default function AboutPage() {
                   Book Free Consultation
                 </motion.button>
               </Link>
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto px-8 py-4 rounded-full bg-green-500/10 text-green-400 font-semibold flex items-center justify-center gap-2 border border-green-500/20 hover:bg-green-500/20 transition-colors">
-                <MessageCircle className="w-5 h-5" /> WhatsApp Us
-              </motion.button>
+              <a href="https://wa.me/919801568951" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto px-8 py-4 rounded-full bg-green-500/10 text-green-400 font-semibold flex items-center justify-center gap-2 border border-green-500/20 hover:bg-green-500/20 transition-colors">
+                  <MessageCircle className="w-5 h-5" /> WhatsApp Us
+                </motion.button>
+              </a>
             </div>
           </div>
         </section>

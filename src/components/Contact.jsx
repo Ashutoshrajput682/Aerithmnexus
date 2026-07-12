@@ -42,7 +42,7 @@ export default function Contact() {
               <div className="p-4 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400"><Phone className="w-4 h-4" /></div>
               <div>
                 <p className="text-sm text-gray-400 font-semibold uppercase tracking-wider">Call Us</p>
-                <p className="text-xl font-medium">+1 (555) 123-4567</p>
+                <p className="text-xl font-medium">9801568951</p>
               </div>
             </div>
             
