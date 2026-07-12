@@ -24,22 +24,9 @@ const servicesColumns = [
     ]
   },
   {
-    title: 'Performance Marketing',
-    items: [
-      { name: 'PPC Ads', href: '/Services' },
-      { name: 'Meta Ads', href: '/Services' },
-    ]
-  },
-  {
     title: 'Website Design &\nDevelopment',
     items: [
       { name: 'WordPress Development', href: '/Services' },
-    ]
-  },
-  {
-    title: 'Local SEO Services',
-    items: [
-      { name: 'Small Business SEO', href: '/Services' },
     ]
   },
   {
@@ -47,21 +34,13 @@ const servicesColumns = [
     items: [
       { name: 'Shopify Development', href: '/Services' },
     ]
-  },
-  {
-    title: 'Social Media Marketing',
-    items: [
-      { name: 'Social Media Optimization', href: '/Services' },
-      { name: 'Social Media Advertising', href: '/Services' },
-    ]
   }
 ];
 
 const pricingPackages = [
   { name: 'AI-POWERED SEO', href: '/pricing/ai-powered-seo' },
   { name: 'SMO', href: '/pricing/smo' },
-  { name: 'WEB DEV', href: '/pricing/web-dev' },
-  { name: 'AEO + GEO', href: '/pricing/aeo-geo' }
+  { name: 'WEB DEV', href: '/pricing/web-dev' }
 ];
 
 const Navbar = () => {
