@@ -136,13 +136,13 @@ export default function ContactPage() {
                   <p className="text-lg">9801568951</p>
                 </div>
               </a>
-              <div className="flex gap-4 items-start">
+              {/* <div className="flex gap-4 items-start">
                 <div className="p-3 bg-pink-500/10 rounded-xl text-pink-400"><MapPin className="w-6 h-6"/></div>
                 <div>
                   <p className="font-semibold text-gray-400">Headquarters</p>
                   <p className="text-lg">123 Tech Street, Silicon Valley, CA</p>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* 7. Response Timeline */}
@@ -156,85 +156,80 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Huge Form */}
+          {/* Contact Form */}
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-2 p-8 md:p-12 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-t-3xl" />
-            <h3 className="text-3xl font-bold mb-8">Tell us about your project</h3>
+            <h3 className="text-3xl font-bold mb-2">Send Us a Message</h3>
+            <p className="text-slate-400 mb-8">Fill in the form below and we'll get back to you within 30 minutes.</p>
             <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <InputField label="Full Name *" placeholder="John Doe" required />
-                <InputField label="Company" placeholder="Acme Inc." />
-                <InputField label="Business Email *" type="email" placeholder="john@acme.com" required />
-                <InputField label="Phone" type="tel" placeholder="+1 234 567 890" />
-                <InputField label="WhatsApp" type="tel" placeholder="+1 234 567 890" />
-                <InputField label="Country" placeholder="United States" />
-                <InputField label="City" placeholder="San Francisco" />
-                <InputField label="Website URL" placeholder="https://acme.com" />
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Required Services</label>
-                  <select className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-slate-300 focus:outline-none focus:border-blue-500">
-                    <option>Select Services</option>
-                    {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Project Type</label>
-                  <select className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-slate-300 focus:outline-none focus:border-blue-500">
-                    <option>Select Type</option>
-                    {PROJECT_TYPES.map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Estimated Budget</label>
-                  <select className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-slate-300 focus:outline-none focus:border-blue-500">
-                    <option>$5k - $10k</option><option>$10k - $25k</option><option>$25k - $50k</option><option>$50k+</option>
-                  </select>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Timeline</label>
-                  <select className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-slate-300 focus:outline-none focus:border-blue-500">
-                    <option>ASAP</option><option>1-3 Months</option><option>3-6 Months</option>
-                  </select>
-                </div>
-              </div>
 
+              {/* Full Name */}
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Project Description *</label>
-                <textarea rows={5} placeholder="Describe your goals and requirements..." className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 resize-none" required />
+                <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Full Name <span className="text-blue-400">*</span></label>
+                <input
+                  type="text"
+                  placeholder="e.g. Rahul Sharma"
+                  required
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                />
               </div>
 
-              <div className="flex items-center gap-4 p-4 rounded-xl border border-dashed border-white/20 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
-                <Upload className="w-5 h-5 text-gray-400" />
-                <span className="text-sm text-gray-400">Upload Requirement Document (PDF, DOCX)</span>
-              </div>
-
+              {/* Email + Phone */}
               <div className="grid md:grid-cols-2 gap-6">
-                 <InputField label="Meeting Time Preference" type="datetime-local" />
-                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Preferred Contact Method</label>
-                  <select className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-slate-300 focus:outline-none focus:border-blue-500">
-                    <option>Email</option><option>Phone Call</option><option>WhatsApp</option><option>Zoom Meeting</option>
-                  </select>
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Email Address <span className="text-blue-400">*</span></label>
+                  <input
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Phone Number <span className="text-blue-400">*</span></label>
+                  <input
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    required
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                  />
                 </div>
               </div>
 
-              <div className="flex flex-col gap-3 pt-4">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-white/10" required />
-                  <span className="text-sm text-gray-400">I agree to the <span className="text-blue-400">Privacy Policy</span> and data processing.</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-white/10" />
-                  <span className="text-sm text-gray-400">Subscribe to our newsletter for insights and updates.</span>
-                </label>
+              {/* Service Dropdown */}
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Service <span className="text-blue-400">*</span></label>
+                <select
+                  required
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-slate-300 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all appearance-none cursor-pointer"
+                >
+                  <option value="" disabled selected>Select a Service</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="seo">SEO</option>
+                  <option value="ai-solutions">AI Solutions</option>
+                  <option value="digital-marketing">Digital Marketing</option>
+                </select>
               </div>
 
-              <button className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold flex justify-center items-center gap-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all">
-                Send Request <Send className="w-5 h-5" />
+              {/* Message */}
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Message <span className="text-blue-400">*</span></label>
+                <textarea
+                  rows={5}
+                  placeholder="Tell us about your project or requirement..."
+                  required
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none"
+                />
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold flex justify-center items-center gap-2 hover:from-blue-600 hover:to-purple-700 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] active:scale-[0.98] transition-all text-lg"
+              >
+                Send Message <Send className="w-5 h-5" />
               </button>
+
             </form>
           </motion.div>
         </section>

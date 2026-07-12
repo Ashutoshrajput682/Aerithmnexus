@@ -70,8 +70,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-3 left-3 right-3 sm:top-4 sm:left-6 sm:right-6 md:left-8 md:right-8 z-50 rounded-2xl border transition-all duration-300 ${
         scrolled || isOpen
-          ? 'bg-slate-950/90 border-white/15 shadow-[0_8px_40px_rgba(0,0,0,0.5)] backdrop-blur-2xl'
-          : 'bg-white/5 border-white/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]'
+          ? 'bg-slate-950/80 border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)] backdrop-blur-2xl'
+          : 'bg-slate-950/50 border-white/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
@@ -117,23 +117,23 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 15 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-[120%] left-1/2 -translate-x-1/2 w-[90vw] max-w-[1000px] bg-white border border-slate-200 rounded-3xl shadow-2xl p-6 lg:p-8 z-50 flex flex-col before:absolute before:content-[''] before:-top-4 before:left-0 before:w-full before:h-4"
+                        className="absolute top-[120%] left-1/2 -translate-x-1/2 w-[90vw] max-w-[1000px] bg-slate-950/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 lg:p-8 z-50 flex flex-col before:absolute before:content-[''] before:-top-4 before:left-0 before:w-full before:h-4"
                       >
-                         <h2 className="text-xs font-bold text-slate-400 mb-6 uppercase tracking-widest border-b border-slate-100 pb-2">OUR SERVICES</h2>
+                         <h2 className="text-xs font-bold text-slate-400 mb-6 uppercase tracking-widest border-b border-white/10 pb-2">OUR SERVICES</h2>
                          <div className="flex gap-6 justify-between flex-wrap">
                           {servicesColumns.map((category, idx) => (
                             <div key={idx} className="flex-1 min-w-[140px]">
-                              <h3 className="text-[15px] font-bold text-slate-800 mb-4 pb-2 border-b border-slate-200 whitespace-pre-line leading-tight">
+                              <h3 className="text-[15px] font-bold text-white mb-4 pb-2 border-b border-white/10 whitespace-pre-line leading-tight">
                                 {category.title}
                               </h3>
                               <ul className="space-y-3">
                                 {category.items.map((item) => (
                                   <li key={item.name} className="flex items-start gap-2">
-                                    <ChevronRight className="w-4 h-4 text-slate-400 mt-[2px] shrink-0" />
+                                    <ChevronRight className="w-4 h-4 text-slate-500 mt-[2px] shrink-0" />
                                     <Link
                                       to={item.href}
                                       onClick={() => setActiveDropdown(null)}
-                                      className="text-[14px] text-slate-600 hover:text-blue-600 transition-colors duration-200 block leading-tight"
+                                      className="text-[14px] text-slate-300 hover:text-blue-400 transition-colors duration-200 block leading-tight"
                                     >
                                       {item.name}
                                     </Link>
@@ -157,7 +157,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 15 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-[120%] left-1/2 -translate-x-1/2 w-[340px] bg-white border border-slate-200 rounded-3xl shadow-2xl p-6 z-50 flex flex-col before:absolute before:content-[''] before:-top-4 before:left-0 before:w-full before:h-4"
+                        className="absolute top-[120%] left-1/2 -translate-x-1/2 w-[340px] bg-slate-950/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 z-50 flex flex-col before:absolute before:content-[''] before:-top-4 before:left-0 before:w-full before:h-4"
                       >
                          <h2 className="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest">OUR PACKAGES</h2>
                          <div className="space-y-3 flex-1 mb-6">
@@ -166,20 +166,20 @@ const Navbar = () => {
                                 key={pkg.name}
                                 to={pkg.href}
                                 onClick={() => setActiveDropdown(null)}
-                                className="group flex items-center justify-between px-5 py-4 border border-slate-100 rounded-2xl hover:border-blue-100 hover:bg-blue-50/50 transition-all duration-300"
+                                className="group flex items-center justify-between px-5 py-4 border border-white/10 rounded-2xl hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300"
                               >
-                                <span className="font-bold text-slate-800 group-hover:text-blue-700 transition-colors">{pkg.name}</span>
-                                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                                <span className="font-bold text-slate-300 group-hover:text-blue-400 transition-colors">{pkg.name}</span>
+                                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
                               </Link>
                             ))}
                          </div>
                          
-                         <div className="pt-5 border-t border-slate-100 flex items-center justify-between">
-                            <span className="text-[13px] text-slate-500">Need a custom quote?</span>
+                         <div className="pt-5 border-t border-white/10 flex items-center justify-between">
+                            <span className="text-[13px] text-slate-400">Need a custom quote?</span>
                             <Link
                               to="/Contact"
                               onClick={() => setActiveDropdown(null)}
-                              className="text-[13px] font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-lg transition-colors"
+                              className="text-[13px] font-bold text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 px-4 py-2 rounded-lg transition-colors border border-blue-500/20"
                             >
                               Talk to us &rarr;
                             </Link>
