@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2, ChevronRight, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronRight, ChevronDown, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -12,42 +12,63 @@ const links = [
   { name: 'Contact',  href: '/Contact' },
 ];
 
-const servicesCategories = [
+const servicesColumns = [
   {
-    title: 'DEVELOPMENT',
+    title: 'SEO',
     items: [
-      { name: 'Web Development', href: '/Services' },
-      { name: 'ERP Development', href: '/Services' },
-      { name: 'Core PHP Development', href: '/Services' },
-      { name: 'E-Commerce Development', href: '/Services' },
-      { name: 'Laravel Development', href: '/Services' },
-      { name: 'Web Application Development', href: '/Services' },
-      { name: 'PSD To HTML Conversion', href: '/Services' },
+      { name: 'Ecommerce SEO Service', href: '/Services' },
+      { name: 'Local SEO Service', href: '/Services' },
+      { name: 'Technical SEO Service', href: '/Services' },
+      { name: 'SEO Reseller Service', href: '/Services' },
+      { name: 'White Label SEO Service', href: '/Services' },
     ]
   },
   {
-    title: 'DESIGNING',
+    title: 'Performance Marketing',
     items: [
-      { name: 'Website Designing', href: '/Services' },
-      { name: 'Website Redesigning', href: '/Services' },
-      { name: 'Logo Designing', href: '/Services' },
+      { name: 'PPC Ads', href: '/Services' },
+      { name: 'Meta Ads', href: '/Services' },
     ]
   },
   {
-    title: 'CMS DEVELOPMENT',
+    title: 'Website Design &\nDevelopment',
     items: [
-      { name: 'Wordpress Development', href: '/Services' },
-      { name: 'Moodle Development', href: '/Services' },
-      { name: 'Drupal Development', href: '/Services' },
+      { name: 'WordPress Development', href: '/Services' },
+    ]
+  },
+  {
+    title: 'Local SEO Services',
+    items: [
+      { name: 'Small Business SEO', href: '/Services' },
+    ]
+  },
+  {
+    title: 'Ecommerce Development',
+    items: [
+      { name: 'Shopify Development', href: '/Services' },
+    ]
+  },
+  {
+    title: 'Social Media Marketing',
+    items: [
+      { name: 'Social Media Optimization', href: '/Services' },
+      { name: 'Social Media Advertising', href: '/Services' },
     ]
   }
+];
+
+const pricingPackages = [
+  { name: 'AI-POWERED SEO', href: '/pricing/ai-powered-seo' },
+  { name: 'SMO', href: '/pricing/smo' },
+  { name: 'WEB DEV', href: '/pricing/web-dev' },
+  { name: 'AEO + GEO', href: '/pricing/aeo-geo' }
 ];
 
 const Navbar = () => {
   const [isOpen,    setIsOpen]    = useState(false);
   const [scrolled,  setScrolled]  = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileDropdowns, setMobileDropdowns] = useState({ Services: false, Pricing: false });
   const location = useLocation();
 
   useEffect(() => {
@@ -58,6 +79,13 @@ const Navbar = () => {
 
   // Close menu on route change
   useEffect(() => setIsOpen(false), [location.pathname]);
+
+  const toggleMobileDropdown = (name) => {
+    setMobileDropdowns(prev => ({
+      ...prev,
+      [name]: !prev[name]
+    }));
+  };
 
   return (
     <nav
@@ -80,7 +108,11 @@ const Navbar = () => {
               <div
                 key={link.name}
                 className="relative"
-                onMouseEnter={() => link.name === 'Services' && setActiveDropdown('Services')}
+                onMouseEnter={() => {
+                  if (link.name === 'Services' || link.name === 'Pricing') {
+                    setActiveDropdown(link.name);
+                  }
+                }}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link
@@ -92,12 +124,12 @@ const Navbar = () => {
                   }`}
                 >
                   {link.name}
-                  {link.name === 'Services' && (
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'Services' ? 'rotate-180' : ''}`} />
+                  {(link.name === 'Services' || link.name === 'Pricing') && (
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />
                   )}
                 </Link>
 
-                {/* Desktop Mega Menu */}
+                {/* Services Mega Menu */}
                 {link.name === 'Services' && (
                   <AnimatePresence>
                     {activeDropdown === 'Services' && (
@@ -106,29 +138,73 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 15 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-[120%] left-1/2 -translate-x-1/2 w-[700px] lg:w-[800px] bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 lg:p-8 z-50 flex gap-6 lg:gap-8 before:absolute before:content-[''] before:-top-4 before:left-0 before:w-full before:h-4"
+                        className="absolute top-[120%] left-1/2 -translate-x-1/2 w-[90vw] max-w-[1000px] bg-white border border-slate-200 rounded-3xl shadow-2xl p-6 lg:p-8 z-50 flex flex-col before:absolute before:content-[''] before:-top-4 before:left-0 before:w-full before:h-4"
                       >
-                        {servicesCategories.map((category) => (
-                          <div key={category.title} className="flex-1">
-                            <h3 className="text-sm font-bold text-white mb-4 pb-2 border-b border-white/10 flex items-center gap-2">
-                              {category.title}
-                              <span className="h-[2px] w-4 bg-blue-500 rounded-full inline-block"></span>
-                            </h3>
-                            <ul className="space-y-3">
-                              {category.items.map((item) => (
-                                <li key={item.name}>
-                                  <Link
-                                    to={item.href}
-                                    onClick={() => setActiveDropdown(null)}
-                                    className="text-sm text-slate-300 hover:text-emerald-400 hover:bg-white/5 px-2 py-1.5 -mx-2 rounded-lg transition-all duration-200 block"
-                                  >
-                                    {item.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
+                         <h2 className="text-xs font-bold text-slate-400 mb-6 uppercase tracking-widest border-b border-slate-100 pb-2">OUR SERVICES</h2>
+                         <div className="flex gap-6 justify-between flex-wrap">
+                          {servicesColumns.map((category, idx) => (
+                            <div key={idx} className="flex-1 min-w-[140px]">
+                              <h3 className="text-[15px] font-bold text-slate-800 mb-4 pb-2 border-b border-slate-200 whitespace-pre-line leading-tight">
+                                {category.title}
+                              </h3>
+                              <ul className="space-y-3">
+                                {category.items.map((item) => (
+                                  <li key={item.name} className="flex items-start gap-2">
+                                    <ChevronRight className="w-4 h-4 text-slate-400 mt-[2px] shrink-0" />
+                                    <Link
+                                      to={item.href}
+                                      onClick={() => setActiveDropdown(null)}
+                                      className="text-[14px] text-slate-600 hover:text-blue-600 transition-colors duration-200 block leading-tight"
+                                    >
+                                      {item.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
+
+                {/* Pricing Dropdown */}
+                {link.name === 'Pricing' && (
+                  <AnimatePresence>
+                    {activeDropdown === 'Pricing' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 15 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-[120%] left-1/2 -translate-x-1/2 w-[340px] bg-white border border-slate-200 rounded-3xl shadow-2xl p-6 z-50 flex flex-col before:absolute before:content-[''] before:-top-4 before:left-0 before:w-full before:h-4"
+                      >
+                         <h2 className="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest">OUR PACKAGES</h2>
+                         <div className="space-y-3 flex-1 mb-6">
+                            {pricingPackages.map((pkg) => (
+                              <Link
+                                key={pkg.name}
+                                to={pkg.href}
+                                onClick={() => setActiveDropdown(null)}
+                                className="group flex items-center justify-between px-5 py-4 border border-slate-100 rounded-2xl hover:border-blue-100 hover:bg-blue-50/50 transition-all duration-300"
+                              >
+                                <span className="font-bold text-slate-800 group-hover:text-blue-700 transition-colors">{pkg.name}</span>
+                                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                              </Link>
+                            ))}
+                         </div>
+                         
+                         <div className="pt-5 border-t border-slate-100 flex items-center justify-between">
+                            <span className="text-[13px] text-slate-500">Need a custom quote?</span>
+                            <Link
+                              to="/Contact"
+                              onClick={() => setActiveDropdown(null)}
+                              className="text-[13px] font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-lg transition-colors"
+                            >
+                              Talk to us &rarr;
+                            </Link>
+                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -182,7 +258,7 @@ const Navbar = () => {
                     <Link
                       to={link.href}
                       onClick={() => {
-                        if (link.name !== 'Services') setIsOpen(false);
+                        if (link.name !== 'Services' && link.name !== 'Pricing') setIsOpen(false);
                       }}
                       className={`flex-1 flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                         location.pathname === link.href
@@ -191,18 +267,18 @@ const Navbar = () => {
                       }`}
                     >
                       {link.name}
-                      {link.name !== 'Services' && <ChevronRight className="w-4 h-4 opacity-40" />}
+                      {link.name !== 'Services' && link.name !== 'Pricing' && <ChevronRight className="w-4 h-4 opacity-40" />}
                     </Link>
                     
-                    {link.name === 'Services' && (
+                    {(link.name === 'Services' || link.name === 'Pricing') && (
                       <button
                         onClick={(e) => {
                           e.preventDefault();
-                          setMobileServicesOpen(!mobileServicesOpen);
+                          toggleMobileDropdown(link.name);
                         }}
                         className="p-3 text-slate-300 hover:text-white focus:outline-none"
                       >
-                        <ChevronDown className={`w-5 h-5 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-5 h-5 transition-transform ${mobileDropdowns[link.name] ? 'rotate-180' : ''}`} />
                       </button>
                     )}
                   </div>
@@ -210,24 +286,24 @@ const Navbar = () => {
                   {/* Mobile Services Accordion */}
                   {link.name === 'Services' && (
                     <AnimatePresence>
-                      {mobileServicesOpen && (
+                      {mobileDropdowns['Services'] && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden"
+                          className="overflow-hidden bg-slate-900/50 rounded-xl mt-1 mb-2"
                         >
-                          <div className="pl-6 pr-4 py-2 space-y-4">
-                            {servicesCategories.map((category) => (
-                              <div key={category.title}>
-                                <h4 className="text-xs font-bold text-white/70 mb-2 uppercase tracking-wider">{category.title}</h4>
-                                <ul className="space-y-1">
+                          <div className="px-4 py-3 space-y-5">
+                            {servicesColumns.map((category, idx) => (
+                              <div key={idx}>
+                                <h4 className="text-xs font-bold text-white/70 mb-2 uppercase tracking-wider">{category.title.replace('\n', ' ')}</h4>
+                                <ul className="space-y-1 pl-2 border-l border-white/10">
                                   {category.items.map((item) => (
                                     <li key={item.name}>
                                       <Link
                                         to={item.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="block text-sm text-slate-300 hover:text-emerald-400 py-1.5"
+                                        className="block text-sm text-slate-300 hover:text-blue-400 py-1.5 pl-2"
                                       >
                                         {item.name}
                                       </Link>
@@ -235,6 +311,35 @@ const Navbar = () => {
                                   ))}
                                 </ul>
                               </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+
+                  {/* Mobile Pricing Accordion */}
+                  {link.name === 'Pricing' && (
+                    <AnimatePresence>
+                      {mobileDropdowns['Pricing'] && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden bg-slate-900/50 rounded-xl mt-1 mb-2"
+                        >
+                          <div className="px-4 py-3 space-y-2">
+                             <h4 className="text-xs font-bold text-white/50 mb-3 uppercase tracking-wider">OUR PACKAGES</h4>
+                            {pricingPackages.map((pkg) => (
+                              <Link
+                                key={pkg.name}
+                                to={pkg.href}
+                                onClick={() => setIsOpen(false)}
+                                className="flex items-center justify-between text-sm text-slate-200 hover:text-white py-2 px-3 hover:bg-white/5 rounded-lg border border-white/5"
+                              >
+                                {pkg.name}
+                                <ArrowRight className="w-4 h-4 text-white/30" />
+                              </Link>
                             ))}
                           </div>
                         </motion.div>
