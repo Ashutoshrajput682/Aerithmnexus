@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Check, X, Star, Shield, Zap, ArrowRight, ChevronDown,
   MessageCircle, Phone, Calendar, CreditCard,
-  CheckCircle2, HelpCircle, Users, Globe, FolderOpen, Award,
+  CheckCircle2, HelpCircle, Users, Globe, FolderOpen, Award, Share2, Layout
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -24,6 +24,40 @@ const FeatureVal = ({ val }) => {
 };
 
 const billingLabels = { monthly: 'Monthly', onetime: 'One Time', yearly: 'Yearly' };
+
+// ─── Component ───────────────────────────────────────────────────────────────
+const servicePackages = [
+  {
+    name: 'AI-Powered SEO',
+    description: 'Boost your organic traffic and dominate search results with our advanced AI-driven SEO strategies. From basic audits to enterprise-level keyword analysis.',
+    link: '/pricing/ai-powered-seo',
+    priceStarting: '$750',
+    features: ['Initial Website Audit', 'Keyword Analysis', 'On-Page Optimization', 'Off-Page Optimization', 'AI Search Visibility', 'Monthly Reporting'],
+    icon: Zap,
+    color: 'from-blue-500 to-sky-500',
+    shadow: 'shadow-blue-500/20'
+  },
+  {
+    name: 'Social Media Optimization (SMO)',
+    description: 'Enhance your brand visibility and engage your audience across major platforms with data-driven social media strategies.',
+    link: '/pricing/smo',
+    priceStarting: '$200',
+    features: ['Social Media Strategy', 'Profile Creation', 'Content Creation & Posting', 'Community Building', 'Monthly Analytics'],
+    icon: Share2,
+    color: 'from-violet-500 to-fuchsia-500',
+    shadow: 'shadow-violet-500/20'
+  },
+  {
+    name: 'Web Development',
+    description: 'Build a stunning, responsive, and high-performance website tailored to your business needs, from simple landing pages to complex e-commerce.',
+    link: '/pricing/web-dev',
+    priceStarting: '$500',
+    features: ['Custom UI/UX Design', 'Responsive Development', 'CMS Integration', 'E-commerce Functionality', 'Security & Maintenance', 'Performance Tuning'],
+    icon: Layout,
+    color: 'from-emerald-500 to-teal-500',
+    shadow: 'shadow-emerald-500/20'
+  }
+];
 
 // ─── Component ───────────────────────────────────────────────────────────────
 const PricingPage = () => {
@@ -89,226 +123,60 @@ const PricingPage = () => {
           </div>
         </section>
 
-        {/* ══ BILLING TOGGLE + CURRENCY ══════════════════════════════════════ */}
-        <section className="pb-14 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6">
-
-            {/* Billing Toggle */}
-            <div className="flex items-center gap-1 p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-              {Object.entries(billingLabels).map(([key, label]) => (
-                <button
-                  key={key}
-                  onClick={() => setBilling(key)}
-                  className={`relative px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    billing === key
-                      ? 'bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)]'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  {label}
-                  {key === 'yearly' && (
-                    <span className="absolute -top-2 -right-1 text-[9px] font-bold bg-emerald-500 text-white px-1.5 py-0.5 rounded-full">-20%</span>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* Currency Switcher */}
-            <div className="flex items-center gap-1 p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-              {Object.keys(currencySymbols).map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setCurrency(c)}
-                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
-                    currency === c
-                      ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  {currencySymbols[c]} {c}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══ PRICING CARDS ═════════════════════════════════════════════════ */}
+        {/* ══ PRICING CATEGORIES ═════════════════════════════════════════════════ */}
         <section className="pb-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-              {plans.map((plan, i) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {servicePackages.map((pkg, i) => (
                 <motion.div
-                  key={plan.name}
+                  key={pkg.name}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                  className={`relative flex flex-col rounded-[2rem] border backdrop-blur-xl overflow-hidden transition-all duration-500 ${
-                    plan.highlighted
-                      ? 'bg-gradient-to-b from-blue-500/10 via-violet-500/5 to-transparent border-violet-500/40 shadow-[0_0_60px_rgba(99,102,241,0.3)] scale-105'
-                      : 'bg-white/[0.03] border-white/10 hover:border-white/20 hover:shadow-[0_8px_50px_rgba(139,92,246,0.12)]'
-                  }`}
+                  className={`relative flex flex-col rounded-[2.5rem] p-8 border border-white/10 bg-[#061e35]/80 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)]`}
                 >
-                  {/* Gradient border for highlighted */}
-                  {plan.highlighted && (
-                    <div className="absolute inset-0 rounded-[2rem] pointer-events-none"
-                      style={{ padding: '2px', background: 'linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude' }}
-                    />
-                  )}
-
-                  {/* Animated glow for highlighted */}
-                  {plan.highlighted && (
-                    <motion.div
-                      className="absolute inset-0 rounded-[2rem] pointer-events-none"
-                      animate={{ opacity: [0.3, 0.6, 0.3] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.2) 0%, transparent 70%)' }}
-                    />
-                  )}
-
-                  {/* Badge */}
-                  {plan.badge && (
-                    <div className="relative z-20 text-center pt-4">
-                      <span className={`inline-block px-4 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${
-                        plan.badge === 'Most Popular'
-                          ? 'bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.5)]'
-                          : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white'
-                      }`}>
-                        {plan.badge === 'Most Popular' ? '🔥 Most Popular' : '⭐ Best Value'}
-                      </span>
+                  <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${pkg.color} rounded-full blur-[80px] opacity-20 pointer-events-none`}></div>
+                  
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${pkg.color} flex items-center justify-center mb-6 shadow-lg ${pkg.shadow}`}>
+                      <pkg.icon className="w-6 h-6 text-white" />
                     </div>
-                  )}
+                    
+                    <h3 className="text-2xl font-extrabold text-white mb-3">
+                      {pkg.name}
+                    </h3>
+                    <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                      {pkg.description}
+                    </p>
 
-                  <div className="relative z-10 p-7 flex flex-col flex-grow">
-                    <div className="mb-6">
-                      <h3 className={`text-2xl font-extrabold mb-1 ${plan.highlighted ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400' : 'text-white'}`}>
-                        {plan.name}
-                      </h3>
-                      <p className="text-sm text-slate-400 leading-relaxed">{plan.description}</p>
+                    <div className="mb-8">
+                      <p className="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Starting From</p>
+                      <p className="text-4xl font-black text-white">{pkg.priceStarting}<span className="text-base text-slate-400 font-normal">/mo</span></p>
                     </div>
 
-                    {/* Price */}
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`${billing}-${currency}`}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.25 }}
-                        className="mb-2"
-                      >
-                        <span className="text-5xl font-black text-white">{getPrice(plan)}</span>
-                        <span className="text-slate-400 text-sm ml-1">
-                          {billing === 'monthly' ? '/mo' : billing === 'yearly' ? '/yr' : '/project'}
-                        </span>
-                      </motion.div>
-                    </AnimatePresence>
-
-                    <div className="flex items-center gap-2 mb-6">
-                      <Zap className="w-3.5 h-3.5 text-amber-400" />
-                      <span className="text-xs text-amber-300 font-semibold">Delivery: {plan.delivery}</span>
+                    <div className="flex-grow">
+                      <h4 className="text-xs font-bold text-white mb-4 uppercase tracking-wider">Key Features</h4>
+                      <ul className="space-y-3 mb-8">
+                        {pkg.features.map((feat, idx) => (
+                          <li key={idx} className="flex items-start gap-3 text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span className="text-slate-300">{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
 
-                    {/* Features */}
-                    <ul className="space-y-2.5 mb-8 flex-grow">
-                      {Object.entries(plan.features).map(([feat, val]) => (
-                        <li key={feat} className={`flex items-center gap-3 text-sm ${!val ? 'opacity-40' : ''}`}>
-                          {val ? (
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                          ) : (
-                            <X className="w-4 h-4 text-rose-400 shrink-0" />
-                          )}
-                          <span className="text-slate-200">{feat}</span>
-                          {typeof val === 'string' && (
-                            <span className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-300">{val}</span>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Buttons */}
-                    <div className="space-y-3 mt-auto">
-                      <Link
-                        to="/Contact"
-                        className={`w-full py-3.5 px-5 rounded-xl font-bold text-center text-sm flex items-center justify-center gap-2 transition-all ${
-                          plan.highlighted
-                            ? 'bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 text-white shadow-[0_0_25px_rgba(99,102,241,0.5)] hover:shadow-[0_0_40px_rgba(99,102,241,0.7)]'
-                            : 'bg-white/10 hover:bg-white/20 text-white border border-white/10 hover:border-white/25'
-                        }`}
-                      >
-                        <Zap className="w-4 h-4" /> Start Project
-                      </Link>
-                      <Link
-                        to="/Contact"
-                        className="w-full py-3 px-5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all"
-                      >
-                        <Calendar className="w-4 h-4" /> Get Free Quote
-                      </Link>
-                      <a
-                        href="https://wa.me/1234567890"
-                        target="_blank" rel="noopener noreferrer"
-                        className="w-full py-3 px-5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 text-emerald-300 hover:text-white bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 transition-all"
-                      >
-                        <MessageCircle className="w-4 h-4" /> WhatsApp Consultation
-                      </a>
-                    </div>
+                    <Link
+                      to={pkg.link}
+                      className={`w-full py-4 px-6 rounded-2xl font-bold text-center text-sm flex items-center justify-center gap-2 transition-all bg-gradient-to-r ${pkg.color} hover:opacity-90 text-white shadow-lg ${pkg.shadow}`}
+                    >
+                      View Detailed Pricing <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </motion.div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══ COMPARISON TABLE ══════════════════════════════════════════════ */}
-        <section className="pb-24 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
-                Full Feature{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">Comparison</span>
-              </h2>
-              <p className="text-slate-400 max-w-xl mx-auto">
-                See exactly what's included in each Web Development Package.
-              </p>
-            </motion.div>
-
-            <div className="overflow-x-auto rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl">
-              <table className="w-full min-w-[700px]">
-                <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="py-5 px-6 text-left text-sm font-semibold text-slate-400 w-1/4">Feature</th>
-                    {plans.map((p) => (
-                      <th key={p.name} className={`py-5 px-4 text-center text-sm font-extrabold ${p.highlighted ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400' : 'text-white'}`}>
-                        {p.name}
-                        {p.highlighted && <div className="text-[10px] text-violet-400 font-normal mt-0.5">Most Popular</div>}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonRows.map((row, idx) => (
-                    <tr
-                      key={row}
-                      className={`border-b border-white/5 transition-colors hover:bg-white/[0.03] ${idx % 2 === 0 ? '' : 'bg-white/[0.01]'}`}
-                    >
-                      <td className="py-4 px-6">
-                        <span className="text-sm text-slate-300 font-medium">{row}</span>
-                      </td>
-                      {plans.map((p) => (
-                        <td key={p.name} className={`py-4 px-4 text-center ${p.highlighted ? 'bg-violet-500/5' : ''}`}>
-                          <FeatureVal val={p.comparison[row]} />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
           </div>
         </section>

@@ -150,27 +150,7 @@ const ProjectsPage = () => {
                         {project.description}
                       </p>
 
-                      {/* Project Details Grid */}
-                      <div className="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 text-xs text-slate-400 border-y border-white/10 py-4">
-                        <div className="flex flex-col gap-1">
-                          <span className="text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Client</span>
-                          <span className="text-slate-200 truncate">{project.clientType}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          <span className="text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Location</span>
-                          <span className="text-slate-200 truncate">{project.country}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          <span className="text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Timeline</span>
-                          <span className="text-slate-200 truncate">{project.duration}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          <span className="text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Performance</span>
-                          <span className="text-emerald-400 font-medium truncate flex items-center gap-1">
-                            <CheckCircle2 className="w-3 h-3" /> {project.performance}
-                          </span>
-                        </div>
-                      </div>
+
 
                       {/* Tech Stack */}
                       <div className="flex flex-wrap gap-2 mb-6">
