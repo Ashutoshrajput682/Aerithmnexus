@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import { Float, Sphere, MeshDistortMaterial, Stars } from '@react-three/drei';
 
 const AnimatedShapes = () => {
   return (
@@ -36,6 +36,7 @@ const CanvasContainer = () => {
         <ambientLight intensity={1.5} />
         <directionalLight position={[10, 10, 10]} intensity={2} color="#ffffff" />
         <directionalLight position={[-10, -10, -10]} intensity={1} color="#3b82f6" />
+        <Stars radius={120} depth={50} count={3000} factor={6} saturation={0.5} fade speed={2} />
         <AnimatedShapes />
       </Canvas>
     </div>

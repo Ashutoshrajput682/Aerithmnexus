@@ -75,7 +75,7 @@ const PricingPage = () => {
   return (
     <>
       {/* ── Background ── */}
-      <div className="fixed inset-0 z-0 bg-slate-950">
+      <div className="fixed inset-0 z-0 bg-transparent">
         <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-blue-600/8 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-[130px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-fuchsia-500/5 rounded-full blur-[180px]" />

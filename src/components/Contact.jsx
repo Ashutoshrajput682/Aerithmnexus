@@ -11,7 +11,38 @@ const fadeUp = {
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    const response = await fetch("http://localhost:5000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    if (data.success) {
+      alert("Message sent successfully!");
+
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } else {
+      alert(data.message);
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  }
+};
   return (
     <section id="contact" className="relative py-24 bg-[#050505] text-white overflow-hidden z-10">
       {/* Background Effects */}
@@ -66,7 +97,8 @@ export default function Contact() {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-t-3xl" />
             <h3 className="text-3xl font-bold mb-2">Send Us a Message</h3>
             <p className="text-slate-400 mb-8">Fill in the form below and we'll get back to you within 30 minutes.</p>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            {/* <form className="space-y-6" onSubmit={(e) => e.preventDefault()}> */}
+            <form className="space-y-6" onSubmit={handleSubmit}>
 
               {/* Full Name */}
               <div className="flex flex-col gap-2">

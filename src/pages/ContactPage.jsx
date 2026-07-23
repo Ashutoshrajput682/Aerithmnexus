@@ -73,8 +73,41 @@ const InputField = ({ label, type = "text", ...props }) => (
 export default function ContactPage() {
   const [activeFaq, setActiveFaq] = useState(null);
 
+  // ── Form State ──────────────────────────────────────────────────────────────
+  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
+  const [status, setStatus] = useState(null); // null | 'loading' | 'success' | 'error'
+  const [statusMsg, setStatusMsg] = useState('');
+
+  const handleChange = (e) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    setStatusMsg('');
+    try {
+      const res = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus('success');
+        setStatusMsg('Your message was sent successfully! We\'ll reply within 30 minutes.');
+        setForm({ name: '', email: '', phone: '', service: '', message: '' });
+      } else {
+        setStatus('error');
+        setStatusMsg(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      setStatus('error');
+      setStatusMsg('Network error. Please check your connection and try again.');
+    }
+  };
+
+
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white overflow-hidden font-sans">
+    <div className="relative min-h-screen bg-transparent text-white overflow-hidden font-sans">
       <Navbar />
 
       {/* Animated Background */}
@@ -161,13 +194,39 @@ export default function ContactPage() {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-t-3xl" />
             <h3 className="text-3xl font-bold mb-2">Send Us a Message</h3>
             <p className="text-slate-400 mb-8">Fill in the form below and we'll get back to you within 30 minutes.</p>
-            <form className="space-y-6">
+
+            {/* Status Banner */}
+            <AnimatePresence>
+              {status === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                  className="mb-6 flex items-start gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400"
+                >
+                  <CheckCircle className="w-5 h-5 mt-0.5 shrink-0" />
+                  <p className="text-sm font-medium">{statusMsg}</p>
+                </motion.div>
+              )}
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                  className="mb-6 flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400"
+                >
+                  <div className="w-5 h-5 mt-0.5 shrink-0 rounded-full border-2 border-red-400 flex items-center justify-center text-xs font-bold">!</div>
+                  <p className="text-sm font-medium">{statusMsg}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
 
               {/* Full Name */}
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Full Name <span className="text-blue-400">*</span></label>
                 <input
                   type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
                   placeholder="e.g. Rahul Sharma"
                   required
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
@@ -180,6 +239,9 @@ export default function ContactPage() {
                   <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Email Address <span className="text-blue-400">*</span></label>
                   <input
                     type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
                     placeholder="you@example.com"
                     required
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
@@ -189,6 +251,9 @@ export default function ContactPage() {
                   <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Phone Number <span className="text-blue-400">*</span></label>
                   <input
                     type="tel"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
                     placeholder="+91 98765 43210"
                     required
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
@@ -200,14 +265,16 @@ export default function ContactPage() {
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Service <span className="text-blue-400">*</span></label>
                 <select
+                  name="service"
+                  value={form.service}
+                  onChange={handleChange}
                   required
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-slate-300 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all appearance-none cursor-pointer"
                 >
-                  <option value="" disabled selected>Select a Service</option>
-                  <option value="web-development">Web Development</option>
-                  <option value="seo">SEO</option>
-                  <option value="ai-solutions">AI Solutions</option>
-                  <option value="digital-marketing">Digital Marketing</option>
+                  <option value="" disabled>Select a Service</option>
+                  {SERVICES.map(s => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
                 </select>
               </div>
 
@@ -215,6 +282,9 @@ export default function ContactPage() {
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">Message <span className="text-blue-400">*</span></label>
                 <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
                   rows={5}
                   placeholder="Tell us about your project or requirement..."
                   required
@@ -225,9 +295,20 @@ export default function ContactPage() {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold flex justify-center items-center gap-2 hover:from-blue-600 hover:to-purple-700 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] active:scale-[0.98] transition-all text-lg"
+                disabled={status === 'loading'}
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold flex justify-center items-center gap-2 hover:from-blue-600 hover:to-purple-700 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] active:scale-[0.98] transition-all text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Message <Send className="w-5 h-5" />
+                {status === 'loading' ? (
+                  <>
+                    <svg className="animate-spin w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  <>Send Message <Send className="w-5 h-5" /></>
+                )}
               </button>
 
             </form>

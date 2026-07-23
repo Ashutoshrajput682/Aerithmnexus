@@ -187,7 +187,7 @@ const ServicesPage = () => {
   return (
     <>
       {/* Background with dark theme and blue/purple gradient glow */}
-      <div className="fixed inset-0 z-0 bg-slate-950">
+      <div className="fixed inset-0 z-0 bg-transparent">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[128px]" />
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[128px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-fuchsia-500/5 rounded-full blur-[160px]" />
@@ -268,7 +268,7 @@ const ServicesPage = () => {
 
                       <div className="pt-6 mt-auto border-t border-white/10">
                         <Link
-                          to="/Contact"
+                          to={`/services/${service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                           className={`inline-flex items-center gap-2 text-sm font-semibold ${service.iconColor} hover:text-white transition-colors group/link`}
                         >
                           Learn More

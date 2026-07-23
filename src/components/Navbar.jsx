@@ -191,7 +191,7 @@ const Navbar = () => {
               </div>
             ))}
             <Link
-              to="/Contact"
+              to="/get-quote"
               className="ml-2 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 text-white text-sm font-bold transition-all shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:shadow-[0_0_25px_rgba(99,102,241,0.6)]"
             >
               Get Quote

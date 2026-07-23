@@ -161,7 +161,7 @@ export default function AboutPage() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white overflow-hidden selection:bg-purple-500/30 font-sans">
+    <div className="relative min-h-screen bg-transparent text-white overflow-hidden selection:bg-purple-500/30 font-sans">
       <Navbar />
 
       {/* Background Effects */}
